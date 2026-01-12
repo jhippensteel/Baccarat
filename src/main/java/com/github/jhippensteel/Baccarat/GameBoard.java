@@ -1,3 +1,12 @@
+/**
+ * Filename: GameBoard.java
+ * 
+ * Author: Jaysen R. Hippensteel
+ * 
+ * Description: Wrapper class for UI. Contains various Baccarat screens.
+ * 
+ * Last Modified: 1-12-26
+ */
 package com.github.jhippensteel.Baccarat;
 
 import javafx.scene.Parent;

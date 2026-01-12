@@ -1,3 +1,12 @@
+/**
+ * Filename: App.java
+ * Author: Jaysen R. Hippensteel
+ * 
+ * Description: Starting point of application. Initializes game logic and 
+ *              outermost UI wrapper. Extends from JavaFX Application class.
+ * 
+ * Last Modified: 1-12-26
+ */
 package com.github.jhippensteel.Baccarat;
 
 import javafx.application.Application;

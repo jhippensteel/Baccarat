@@ -1,3 +1,12 @@
+/**
+ * Filename: Baccarat.java
+ * 
+ * Author: Jaysen R. Hippensteel
+ * 
+ * Description: Tracks and implements all background game logic
+ * 
+ * Last Modified: 1-12-26
+ */
 package com.github.jhippensteel.Baccarat;
 
 import java.util.Random;

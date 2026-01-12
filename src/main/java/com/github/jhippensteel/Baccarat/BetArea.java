@@ -1,3 +1,12 @@
+/**
+ * Filename: BetArea.java
+ * 
+ * Author: Jaysen R. Hippensteel
+ * 
+ * Description: Contains UI/UI logic for the bet area
+ * 
+ * Last Modified: 1-12-26
+ */
 package com.github.jhippensteel.Baccarat;
 
 import javafx.scene.Parent;
