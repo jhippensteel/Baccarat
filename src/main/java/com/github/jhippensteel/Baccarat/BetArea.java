@@ -5,7 +5,7 @@
  * 
  * Description: Contains UI/UI logic for the bet area
  * 
- * Last Modified: 1-12-26
+ * Last Modified: 1-17-26
  */
 package com.github.jhippensteel.Baccarat;
 
@@ -122,5 +122,9 @@ public class BetArea {
     }
     public HBox getContent() {
         return content;
+    }
+
+    public Label getBankerTotal() {
+        return bankerTotal;
     }
 }

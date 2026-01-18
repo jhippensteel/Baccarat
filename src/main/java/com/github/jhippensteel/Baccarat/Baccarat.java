@@ -5,27 +5,41 @@
  * 
  * Description: Tracks and implements all background game logic
  * 
- * Last Modified: 1-12-26
+ * Last Modified: 1-17-26
  */
 package com.github.jhippensteel.Baccarat;
 
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Baccarat {
     private int[] playerCards;
     private int[] bankerCards;
     private int playerTotal;
     private int bankerTotal;
+    private ArrayList<Hand[]> beadPlate;
+    private int gameNumber;
+    private Hand currentHand;
+    private int beadRow;
 
     public Baccarat() {
         playerCards = new int[3];
         bankerCards = new int[3];
         playerTotal = 0;
         bankerTotal = 0;
+        beadPlate = new ArrayList<Hand[]>();
+        beadPlate.add(new Hand[6]);
+        gameNumber = 0;
+        beadRow = 0;
     }
 
     public void dealCards() {
+        ++gameNumber;
         // Logic to deal cards to player and banker
+        playerCards = new int[3];
+        bankerCards = new int[3];
+        playerTotal = 0;
+        bankerTotal = 0;
         playerCards[0] = drawCard();
         if (playerCards[0] < 10){
             playerTotal += playerCards[0];
@@ -79,11 +93,22 @@ public class Baccarat {
                 bankerTotal = bankerTotal % 10;
             }
         }
+        currentHand = new Hand(playerCards, playerTotal, bankerCards, bankerTotal);
+        updateBeadPlate();
     }
 
     private int drawCard() {
         Random rand = new Random();
         return rand.nextInt(13) + 1; // Cards from 1 to 13
+    }
+
+    private void updateBeadPlate() {
+        beadPlate.get(beadPlate.size()-1)[beadRow] = currentHand;
+        ++beadRow;
+        if (beadRow == 6){
+            beadPlate.add(new Hand[6]);
+            beadRow = 0;
+        }
     }
 
     public int[] getPlayerCards() {
