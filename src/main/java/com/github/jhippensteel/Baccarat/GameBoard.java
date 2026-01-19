@@ -5,7 +5,7 @@
  * 
  * Description: Wrapper class for UI. Contains various Baccarat screens.
  * 
- * Last Modified: 1-17-26
+ * Last Modified: 1-19-26
  */
 package com.github.jhippensteel.Baccarat;
 
@@ -45,6 +45,7 @@ public class GameBoard {
         BetArea betArea = new BetArea(gameState);
         BeadRoad beadRoad = new BeadRoad(gameState, betArea.getBankerTotal());
         root.getChildren().add(betArea.getContent());
+        root.getChildren().add(beadRoad.getContent());
         return root;
     }
 }

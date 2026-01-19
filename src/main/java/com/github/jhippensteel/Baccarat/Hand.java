@@ -5,7 +5,7 @@
  * 
  * Description: Contains data for a hand in a baccarat round
  * 
- * Last Modified: 1-17-26
+ * Last Modified: 1-19-26
  */
 package com.github.jhippensteel.Baccarat;
 
@@ -44,5 +44,17 @@ public class Hand {
                 this.bankerPair= true;
         }
         else this.bankerPair = false;
+    }
+
+    public String getWinner() {
+        return winner;
+    }
+
+    public int getPlayerTotal() {
+        return playerTotal;
+    }
+
+    public int getBankerTotal() {
+        return bankerTotal;
     }
 }

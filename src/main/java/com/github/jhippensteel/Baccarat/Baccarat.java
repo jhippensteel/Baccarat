@@ -5,7 +5,7 @@
  * 
  * Description: Tracks and implements all background game logic
  * 
- * Last Modified: 1-17-26
+ * Last Modified: 1-19-26
  */
 package com.github.jhippensteel.Baccarat;
 
@@ -33,7 +33,13 @@ public class Baccarat {
         beadRow = 0;
     }
 
-    public void dealCards() {
+    public void dealCards(){
+        dealHand();
+        currentHand = new Hand(playerCards, playerTotal, bankerCards, bankerTotal);
+        updateBeadPlate();
+    }
+
+    private void dealHand() {
         ++gameNumber;
         // Logic to deal cards to player and banker
         playerCards = new int[3];
@@ -93,8 +99,6 @@ public class Baccarat {
                 bankerTotal = bankerTotal % 10;
             }
         }
-        currentHand = new Hand(playerCards, playerTotal, bankerCards, bankerTotal);
-        updateBeadPlate();
     }
 
     private int drawCard() {
@@ -122,5 +126,9 @@ public class Baccarat {
     }
     public int getBankerTotal() {
         return bankerTotal;
+    }
+
+    public ArrayList<Hand[]> getBeadPlate() {
+        return beadPlate;
     }
 }
