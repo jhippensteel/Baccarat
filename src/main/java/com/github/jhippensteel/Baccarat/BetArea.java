@@ -5,7 +5,7 @@
  * 
  * Description: Contains UI/UI logic for the bet area
  * 
- * Last Modified: 1-17-26
+ * Last Modified: 1-19-26
  */
 package com.github.jhippensteel.Baccarat;
 
@@ -18,6 +18,7 @@ import java.util.Random;
 import java.lang.Thread;
 import javafx.animation.PauseTransition;
 import javafx.util.Duration;
+import javafx.geometry.Insets;
 
 public class BetArea {
     private HBox content;
@@ -35,7 +36,7 @@ public class BetArea {
 
     public BetArea(Baccarat gameState) {
         this.gameState = gameState;
-        content = new HBox();
+        content = new HBox(75);
         playerColumn = new VBox();
         bankerColumn = new VBox();
         tieColumn = new VBox();
@@ -88,6 +89,7 @@ public class BetArea {
         if (isPlayer) {
             if (gameState.getPlayerCards()[stage] != 0) {
                 Label playerCard = new Label("" + gameState.getPlayerCards()[stage]);
+                playerCard.getStyleClass().add("bordered-label");
                 playerCardRow.getChildren().add(playerCard);
             }
             else if (gameState.getBankerCards()[stage] != 0) {
@@ -113,6 +115,7 @@ public class BetArea {
         }
         if (!isPlayer) {
             Label bankerCard = new Label("" + gameState.getBankerCards()[stage]);
+            bankerCard.getStyleClass().add("bordered-label");
             bankerCardRow.getChildren().add(bankerCard);
             PauseTransition pause = new PauseTransition(Duration.seconds(2));
             pause.setOnFinished(event -> updateUI(stage + 1, true));

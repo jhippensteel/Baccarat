@@ -26,22 +26,7 @@ public class GameBoard {
 
     public Parent createContent() {
         TilePane root = new TilePane();
-        VBox tile = new VBox();
-        Text text = new Text("Hello, JavaFX!");
-
-        final int[] counter = {0};
-        Button button = new Button("Click Me");
-        Label label = new Label();
-        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                counter[0]++;
-                label.setText("Button Clicked " + counter[0] + " times!");
-            }
-        };
-        button.setOnAction(event);
-        tile.getChildren().addAll(text, button, label);
-        root.getChildren().add(tile);
+        root.setId("game-board");
         BetArea betArea = new BetArea(gameState);
         BeadRoad beadRoad = new BeadRoad(gameState, betArea.getBankerTotal());
         root.getChildren().add(betArea.getContent());

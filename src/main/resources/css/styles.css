@@ -1,0 +1,15 @@
+/**
+* Filename: styles.css
+*
+* Author: Jaysen R Hippensteel
+*
+* Description: Contains style information for application
+*
+* Last Modified: 1-19-26
+*/
+.bordered-label {
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-padding: 5px;
+}

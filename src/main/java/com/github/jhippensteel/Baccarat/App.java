@@ -22,6 +22,7 @@ public class App extends Application {
         Baccarat gameState = new Baccarat();
         GameBoard board = new GameBoard(gameState);
         Scene scene = new Scene(board.createContent(), 400, 300);
+        scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
         stage.setTitle("Baccarat");
         stage.setScene(scene);
         stage.setMaximized(true);
