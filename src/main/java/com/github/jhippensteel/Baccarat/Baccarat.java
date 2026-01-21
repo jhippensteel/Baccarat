@@ -5,7 +5,7 @@
  * 
  * Description: Tracks and implements all background game logic
  * 
- * Last Modified: 1-19-26
+ * Last Modified: 1-21-26
  */
 package com.github.jhippensteel.Baccarat;
 
@@ -21,6 +21,11 @@ public class Baccarat {
     private int gameNumber;
     private Hand currentHand;
     private int beadRow;
+    private ArrayList<Hand[]> bigRoad;
+    private int bigRow;
+    private Hand prevHand;
+    private int bigCol;
+    private int lastOpenBigCol;
 
     public Baccarat() {
         playerCards = new int[3];
@@ -31,12 +36,19 @@ public class Baccarat {
         beadPlate.add(new Hand[6]);
         gameNumber = 0;
         beadRow = 0;
+        bigRoad = new ArrayList<Hand[]>();
+        bigRoad.add(new Hand[6]);
+        bigRow = -1;
+        bigCol = 0;
+        lastOpenBigCol = 1;
     }
 
     public void dealCards(){
         dealHand();
+        prevHand = currentHand;
         currentHand = new Hand(playerCards, playerTotal, bankerCards, bankerTotal);
         updateBeadPlate();
+        updateBigRoad();
     }
 
     private void dealHand() {
@@ -115,6 +127,56 @@ public class Baccarat {
         }
     }
 
+    private void updateBigRoad() {
+        ++bigRow;
+        if (prevHand == null) {
+            bigRoad.get(0)[0] = currentHand;
+            return;
+        }
+
+        if (bigRow == 6 || bigRoad.get(bigCol)[bigRow] != null){
+
+            if (currentHand.getWinner().equals(prevHand.getWinner())){
+                if(bigCol == bigRoad.size()-1){
+                    bigRoad.add(new Hand[6]);
+                }
+                
+                ++bigCol;
+                --bigRow;
+                if (bigRow == 0) {
+                    ++lastOpenBigCol;
+                }
+                bigRoad.get(bigCol)[bigRow] = currentHand;
+            }
+            
+            else {
+                if (lastOpenBigCol == bigRoad.size()) {
+                    bigRoad.add(new Hand[6]);
+                }
+                bigCol = lastOpenBigCol;
+                ++lastOpenBigCol;
+                bigRow = 0;
+                bigRoad.get(bigCol)[bigRow] = currentHand;
+            }
+        }
+        
+        else {
+
+            if (currentHand.getWinner().equals(prevHand.getWinner())) {
+                bigRoad.get(bigCol)[bigRow] = currentHand;
+            }
+            else {
+                if (lastOpenBigCol == bigRoad.size()) {
+                    bigRoad.add(new Hand[6]);
+                }
+                bigCol = lastOpenBigCol;
+                ++lastOpenBigCol;
+                bigRow = 0;
+                bigRoad.get(bigCol)[bigRow] = currentHand;
+            }
+        }
+    }
+
     public int[] getPlayerCards() {
         return playerCards;
     }
@@ -130,5 +192,9 @@ public class Baccarat {
 
     public ArrayList<Hand[]> getBeadPlate() {
         return beadPlate;
+    }
+
+    public ArrayList<Hand[]> getBigRoad() {
+        return bigRoad;
     }
 }

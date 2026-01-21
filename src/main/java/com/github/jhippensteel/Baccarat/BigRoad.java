@@ -1,9 +1,9 @@
 /**
- * Filename: BeadRoad.java
+ * Filename: BigRoad.java
  * 
  * Author: Jaysen R. Hippensteel
  * 
- * Description: Contains UI/UI logic for Bead Road Screen
+ * Description: Contains UI/UI logic for Big Road Screen
  * 
  * Last Modified: 1-21-26
  */
@@ -18,21 +18,22 @@ import java.util.ArrayList;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class BeadRoad {
+public class BigRoad {
     private VBox content;
     private Baccarat gameState;
     private GridPane grid;
     private Label listenerLabel;
-    private ArrayList<Hand[]> beadPlate;
+    private ArrayList<Hand[]> bigRoad;
 
-    public BeadRoad(Baccarat gameState, Label listenerLabel){
+    public BigRoad(Baccarat gameState, Label listenerLabel){
         content = new VBox();
-        content.setId("bead-road");
+        content.setId("big-road");
         grid = new  GridPane();
+        grid.getStyleClass().add("bead-grid");
         content.getChildren().add(grid);
         this.gameState = gameState;
         this.listenerLabel = listenerLabel;
-        beadPlate = gameState.getBeadPlate();
+        bigRoad = gameState.getBigRoad();
 
         this.listenerLabel.textProperty().addListener((observable, oldValue, newValue) -> {
             updateUI();
@@ -40,46 +41,43 @@ public class BeadRoad {
     }
 
     private void updateUI() {
-        System.out.println("Update UI Called");
+        System.out.println("Update Big UI Called");
         grid.getChildren().clear();
         StackPane stackPane;
         Circle circle;
         Label handScore;
 
-        for (int column = 0;column < beadPlate.size();column++) {
-            for (int row = 0; row < beadPlate.get(column).length; row++) {
+        for (int column = 0;column < bigRoad.size();column++) {
+            for (int row = 0; row < bigRoad.get(column).length; row++) {
                 stackPane = new StackPane();
                 circle = new Circle(15);
 
-                if(beadPlate.get(column)[row] == null){
+                if(bigRoad.get(column)[row] == null){
                     stackPane.setMinSize(30,30);
                     grid.add(stackPane, column, row);
                     System.out.println("Null Node at" + row + " " + column);
                     continue;
                 }
 
-                if (beadPlate.get(column)[row].getWinner().equals("p")){
-                    circle.setFill(Color.BLUE);
+                if (bigRoad.get(column)[row].getWinner().equals("p")){
+                    circle.setFill(Color.TRANSPARENT);
                     circle.setStroke(Color.BLUE);
-                    handScore = new Label(""+beadPlate.get(column)[row].getPlayerTotal());
-                    handScore.getStyleClass().add("bead-score");
-                    stackPane.getChildren().addAll(circle, handScore);
+                    circle.setStrokeWidth(5);
+                    stackPane.getChildren().add(circle);
                     grid.add(stackPane, column, row);
                 }
-                if (beadPlate.get(column)[row].getWinner().equals("b")){
-                    circle.setFill(Color.RED);
+                if (bigRoad.get(column)[row].getWinner().equals("b")){
+                    circle.setFill(Color.TRANSPARENT);
                     circle.setStroke(Color.RED);
-                    handScore = new Label(""+beadPlate.get(column)[row].getBankerTotal());
-                    handScore.getStyleClass().add("bead-score");
-                    stackPane.getChildren().addAll(circle, handScore);
+                    circle.setStrokeWidth(5);
+                    stackPane.getChildren().add(circle);
                     grid.add(stackPane, column, row);
                 }
-                if (beadPlate.get(column)[row].getWinner().equals("t")){
-                    circle.setFill(Color.GREEN);
+                if (bigRoad.get(column)[row].getWinner().equals("t")){
+                    circle.setFill(Color.TRANSPARENT);
                     circle.setStroke(Color.GREEN);
-                    handScore = new Label(""+beadPlate.get(column)[row].getPlayerTotal());
-                    handScore.getStyleClass().add("bead-score");
-                    stackPane.getChildren().addAll(circle, handScore);
+                    circle.setStrokeWidth(5);
+                    stackPane.getChildren().add(circle);
                     grid.add(stackPane, column, row);
                 }
             }

@@ -5,11 +5,63 @@
 *
 * Description: Contains style information for application
 *
-* Last Modified: 1-19-26
+* Last Modified: 1-21-26
 */
 .bordered-label {
     -fx-border-color: black;
     -fx-border-width: 2px;
     -fx-border-style: solid;
     -fx-padding: 5px;
+    -fx-background-color: white;
+}
+
+#big-road {
+    -fx-border-color: gray;
+    -fx-border-width: 5px;
+    -fx-border-style: solid;
+    -fx-pref-width: 400;
+    -fx-pref-height: 200;
+    -fx-max-height: 200;
+    -fx-background-color: rgba(221, 221, 221, 0.959);
+}
+
+.bead-grid {
+    
+}
+
+#bead-road {
+    -fx-border-color: gray;
+    -fx-border-width: 5px;
+    -fx-border-style: solid;
+    -fx-pref-width: 400;
+    -fx-pref-height: 200;
+    -fx-max-height: 200;
+    -fx-background-color: rgb(221, 221, 221, 0.959)
+}
+
+#game-board {
+    -fx-hgap: 10;
+    -fx-background-color: rgb(75, 151, 75);
+}
+
+.bead-score {
+    -fx-font-size: 20;
+    -fx-text-fill: white;
+}
+
+.score-total {
+    -fx-font-size: 30;
+    -fx-font-weight: bold;
+}
+
+.bet-button {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+.bet-button:hover {
+    -fx-background-color: rgb(61, 61, 61);
+}
+.bet-button:pressed {
+    -fx-background-color: rgb(182, 182, 182);
+    -fx-text-fill: black;
 }

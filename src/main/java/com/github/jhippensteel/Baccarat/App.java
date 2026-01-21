@@ -5,7 +5,7 @@
  * Description: Starting point of application. Initializes game logic and 
  *              outermost UI wrapper. Extends from JavaFX Application class.
  * 
- * Last Modified: 1-19-26
+ * Last Modified: 1-21-26
  */
 package com.github.jhippensteel.Baccarat;
 
@@ -21,7 +21,7 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         Baccarat gameState = new Baccarat();
         GameBoard board = new GameBoard(gameState);
-        Scene scene = new Scene(board.createContent(), 400, 300);
+        Scene scene = new Scene(board.createContent());
         scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
         stage.setTitle("Baccarat");
         stage.setScene(scene);

@@ -44,15 +44,20 @@ public class BetArea {
         
         playerButton = new Button("Player");
         playerButton.setOnAction(e -> dealCards());
+        playerButton.getStyleClass().add("bet-button");
         bankerButton = new Button("Banker");
         bankerButton.setOnAction(e -> dealCards());
+        bankerButton.getStyleClass().add("bet-button");
         tieButton = new Button("Tie");
         tieButton.setOnAction(e -> dealCards());
+        tieButton.getStyleClass().add("bet-button");
 
         playerCardRow = new HBox();
         bankerCardRow = new HBox();
         playerTotal = new Label("");
         bankerTotal = new Label("");
+        playerTotal.getStyleClass().add("score-total");
+        bankerTotal.getStyleClass().add("score-total");
 
         playerColumn.getChildren().addAll(playerButton, playerCardRow, playerTotal);
         bankerColumn.getChildren().addAll(bankerButton, bankerCardRow, bankerTotal);
@@ -68,7 +73,7 @@ public class BetArea {
         bankerTotal.setText("");
         gameState.dealCards();
         // Update UI with dealt cards and totals
-        PauseTransition pause = new PauseTransition(Duration.seconds(2));
+        PauseTransition pause = new PauseTransition(Duration.seconds(1.75));
         pause.setOnFinished(event -> updateUI(0, true));
         pause.play();
     }
@@ -76,7 +81,7 @@ public class BetArea {
         if (stage == 3) {
             if (isPlayer) {
                 playerTotal.setText(""+gameState.getPlayerTotal());
-                PauseTransition pause = new PauseTransition(Duration.seconds(1));
+                PauseTransition pause = new PauseTransition(Duration.seconds(1.75));
                 pause.setOnFinished(event -> updateUI(stage, false));
                 pause.play();
                 return;
@@ -101,13 +106,13 @@ public class BetArea {
                 return;
             }
             if (gameState.getBankerCards()[stage] != 0) {
-                PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                PauseTransition pause = new PauseTransition(Duration.seconds(1.75));
                 pause.setOnFinished(event -> updateUI(stage, false));
                 pause.play();
                 return;
             }
             else{
-                PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                PauseTransition pause = new PauseTransition(Duration.seconds(1.75));
                 pause.setOnFinished(event -> updateUI(stage + 1, true));
                 pause.play();
                 return;
@@ -117,7 +122,7 @@ public class BetArea {
             Label bankerCard = new Label("" + gameState.getBankerCards()[stage]);
             bankerCard.getStyleClass().add("bordered-label");
             bankerCardRow.getChildren().add(bankerCard);
-            PauseTransition pause = new PauseTransition(Duration.seconds(2));
+            PauseTransition pause = new PauseTransition(Duration.seconds(1.75));
             pause.setOnFinished(event -> updateUI(stage + 1, true));
             pause.play();
             return;
